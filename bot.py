@@ -1,5 +1,7 @@
-# Piece Table (Preferrable positions)
+# Imports
+import chess
 
+# Piece Table (Preferrable positions)
 pawntable = [
     0, 0, 0, 0, 0, 0, 0, 0,
     5, 10, 10, -20, -20, 10, 10, 5,
@@ -55,3 +57,29 @@ kingstable = [
     -30, -40, -40, -50, -50, -40, -40, -30,
     -30, -40, -40, -50, -50, -40, -40, -30,
     -30, -40, -40, -50, -50, -40, -40, -30]
+
+def status():
+    global board
+    if board.is_checkmate():
+        if board.turn:
+            return -9999
+        else:
+            return 9999
+    if board.is_stalemate():
+        return 0
+    if board.is_insufficient_material():
+        return 0
+    else:
+        return "Status Unknown"
+
+        
+def main():
+    global board
+    boardstatus = status()
+    print(boardstatus)
+
+
+if __name__ == '__main__':
+    count = 1
+    board = chess.Board()
+    main()
